@@ -8,8 +8,8 @@ print("----- Sistema de Agente Seguro -----")
 # Perfiles del sistema (usuario, password, rol)
 # Esta constante esteblece un diccionario de datos con las credenciales de acceso.
 CREDENCIALES = {
-    "invitado": {"password": "invitado123", "rol": "invitado"},
-    "admin": {"password": "admin123", "rol": "admin"},
+    "invitado": {"password": "user12", "rol": "invitado"},
+    "admin": {"password": "admon12", "rol": "admin"},
 }
 
 usuario_actual = ""
