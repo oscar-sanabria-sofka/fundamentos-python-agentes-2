@@ -48,7 +48,9 @@ else:
     mensaje = ""
 
     while sistema_activo:
-        cmd = input("PseudoAgente>: ").strip().lower()
+        cmd_entrada = input("PseudoAgente>: ").strip().lower()
+        partes_cmd = cmd_entrada.split()
+        cmd = partes_cmd[0] if len(partes_cmd) > 0 else ""
 
         if cmd == "salir":
             print("Apagando agente. Hasta luego.")
@@ -149,7 +151,6 @@ else:
 
         elif cmd == "historial":
             # Usando .split() podemos dividir el comando en sus partes para verificar si hay parámetros
-            partes_cmd = cmd.split()
             if len(partes_cmd) > 1:
                 parametro = partes_cmd[1].lower()
                 if parametro == "all":
@@ -200,7 +201,7 @@ else:
             mensaje = "Comando desconocido."
         
         # Registrar cada acción en el historial del agente (excepto historial clear que ya lo maneja)
-        if cmd != "historial" or (len(cmd.split()) > 1 and cmd.split()[1].lower() != "clear"):
+        if cmd != "historial" or (len(partes_cmd) > 1 and partes_cmd[1].lower() != "clear"):
             d_log = {"timestamp": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                     "cmd": cmd,
                     "rol": rol_actual,
