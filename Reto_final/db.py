@@ -9,6 +9,7 @@ DB_PATH = Path(__file__).resolve().parent / "agentes.db"
 
 
 def _get_conn() -> sqlite3.Connection:
+    # Esta función la uso para no repetir la conexion en cada funcion
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     return conn
