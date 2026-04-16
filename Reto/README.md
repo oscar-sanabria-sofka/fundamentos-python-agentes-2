@@ -53,6 +53,7 @@ python cliente.py
 # Evidencias Swagger:
 
 ### OBTENER AGENTES
+
 <img width="1159" height="831" alt="image" src="https://github.com/user-attachments/assets/2714cb92-e7c2-40de-9c97-5e41c485cc68" />
 ### OBTENER MISONES POR AGENTE
 <img width="1334" height="869" alt="image" src="https://github.com/user-attachments/assets/9e337a10-bb99-4b27-866c-a0b6809acc3d" />
