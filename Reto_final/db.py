@@ -14,7 +14,9 @@ def _get_conn() -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row
     return conn
 
+# Aquí tengo todas las funciones relacionadas con la base de datos. Crear tablas, insertar datos, consultar, etc.
 
+# La función crear_tablas se asegura de que las tablas necesarias existan antes de que el servidor empiece a manejar solicitudes.
 def crear_tablas() -> None:
     with _get_conn() as conn:
         cursor = conn.cursor()
@@ -56,7 +58,7 @@ def crear_tablas() -> None:
             """
         )
 
-
+# Registro de agentes, mensajes y misiones. Consultas para listar agentes, leer mensajes, obtener misiones, etc.
 def registrar_agente(nombre: str, rol: str, energia: int) -> bool:
     now = datetime.now().isoformat()
     try:
@@ -68,8 +70,7 @@ def registrar_agente(nombre: str, rol: str, energia: int) -> bool:
         return True
     except sqlite3.IntegrityError:
         return False
-
-
+ 
 def listar_agentes() -> List[Dict[str, Any]]:
     with _get_conn() as conn:
         rows = conn.execute(
@@ -77,7 +78,7 @@ def listar_agentes() -> List[Dict[str, Any]]:
         ).fetchall()
     return [dict(row) for row in rows]
 
-
+# La función despertar_agente se encarga de cargar los datos de un agente específico desde la base de datos, lo que permite que el servidor pueda acceder a su información cuando sea necesario.
 def despertar_agente(nombre: str) -> Optional[Dict[str, Any]]:
     with _get_conn() as conn:
         row = conn.execute(
@@ -86,7 +87,7 @@ def despertar_agente(nombre: str) -> Optional[Dict[str, Any]]:
         ).fetchone()
     return dict(row) if row else None
 
-
+# La función actualizar_energia_agente se utiliza para modificar la cantidad de energía de un agente específico, lo que es fundamental para gestionar las misiones y acciones que el agente puede realizar.
 def actualizar_energia_agente(nombre: str, energia: int) -> bool:
     with _get_conn() as conn:
         cursor = conn.execute(
@@ -105,7 +106,7 @@ def enviar_mensaje(remitente: str, destinatario: str, contenido: str) -> str:
         )
     return f"Mensaje de '{remitente}' a '{destinatario}' enviado."
 
-
+# La función leer_mensajes permite recuperar todos los mensajes dirigidos a un agente específico, lo que es esencial para que el agente pueda procesar su correspondencia y responder adecuadamente.
 def leer_mensajes(nombre_agente: str) -> List[Dict[str, Any]]:
     with _get_conn() as conn:
         rows = conn.execute(
@@ -119,7 +120,7 @@ def leer_mensajes(nombre_agente: str) -> List[Dict[str, Any]]:
         ).fetchall()
     return [dict(row) for row in rows]
 
-
+# La función crear_mision se encarga de insertar una nueva misión en la base de datos, asignándola a un agente específico.
 def crear_mision(
     titulo: str,
     descripcion: str,
@@ -152,7 +153,7 @@ def crear_mision(
         )
     return int(cursor.lastrowid)
 
-
+# La función obtener_mision permite recuperar los detalles de una misión específica utilizando su ID, lo que es crucial para que el agente pueda conocer las tareas asignadas y su estado actual.
 def obtener_mision(mision_id: int) -> Optional[Dict[str, Any]]:
     with _get_conn() as conn:
         row = conn.execute(
@@ -166,7 +167,7 @@ def obtener_mision(mision_id: int) -> Optional[Dict[str, Any]]:
         ).fetchone()
     return dict(row) if row else None
 
-
+# La función listar_misiones_por_agente permite obtener todas las misiones asignadas a un agente específico, lo que es fundamental para que el agente pueda gestionar sus tareas y prioridades de manera efectiva.
 def listar_misiones_por_agente(nombre: str) -> List[Dict[str, Any]]:
     with _get_conn() as conn:
         rows = conn.execute(
@@ -181,7 +182,7 @@ def listar_misiones_por_agente(nombre: str) -> List[Dict[str, Any]]:
         ).fetchall()
     return [dict(row) for row in rows]
 
-
+# La función actualizar_estado_mision se utiliza para modificar el estado de una misión específica, lo que es fundamental para gestionar el progreso de las tareas asignadas.
 def actualizar_estado_mision(mision_id: int, estado: str) -> bool:
     with _get_conn() as conn:
         cursor = conn.execute(
@@ -190,7 +191,7 @@ def actualizar_estado_mision(mision_id: int, estado: str) -> bool:
         )
     return cursor.rowcount > 0
 
-
+# La función agente_existe se utiliza para verificar si un agente específico existe en la base de datos.
 def agente_existe(nombre: str) -> bool:
     with _get_conn() as conn:
         row = conn.execute(
@@ -199,7 +200,7 @@ def agente_existe(nombre: str) -> bool:
         ).fetchone()
     return row is not None
 
-
+# La función eliminar_mision se encarga de eliminar una misión específica de la base de datos utilizando su ID, lo que puede ser necesario para gestionar misiones canceladas o incorrectas.
 def insertar_datos_semilla() -> None:
     crear_tablas()
     with _get_conn() as conn:
