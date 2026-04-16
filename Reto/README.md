@@ -53,10 +53,13 @@ python cliente.py
 # Evidencias Swagger:
 ### OBTENER AGENTES
 <img width="1159" height="831" alt="image" src="https://github.com/user-attachments/assets/2714cb92-e7c2-40de-9c97-5e41c485cc68" />
+
 ### OBTENER MISONES POR AGENTE
 <img width="1334" height="869" alt="image" src="https://github.com/user-attachments/assets/9e337a10-bb99-4b27-866c-a0b6809acc3d" />
+
 ### COMPLETAR MISION CON API KEY DE AUTORIZACIÓN
 <img width="1121" height="886" alt="image" src="https://github.com/user-attachments/assets/55fa0af8-926e-4094-a24f-dfa1c5f3b05e" />
+
 ### CONECTANDO AGENTE CON API EXTERNA - BRIEFING 
 <img width="1116" height="872" alt="image" src="https://github.com/user-attachments/assets/26d4bcd6-096f-45a8-90a7-7a212ea6a877" />
 
