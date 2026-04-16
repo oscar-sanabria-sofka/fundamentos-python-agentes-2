@@ -5,7 +5,7 @@
 1. Entrar a la carpeta:
 
 ```bash
-cd Reto_final
+cd Reto
 ```
 
 2. Crear y activar entorno virtual (recomendado):
