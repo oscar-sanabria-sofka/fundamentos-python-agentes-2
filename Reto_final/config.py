@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
+# Cargo las settings desde variables de entorno
 @dataclass(frozen=True)
 class Settings:
     api_key: str = os.getenv("AGENCIA_API_KEY", "dev-key")
